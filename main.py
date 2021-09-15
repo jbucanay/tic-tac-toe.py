@@ -213,7 +213,17 @@ b7.grid(row=2, column = 0)
 b8.grid(row=2, column = 1)
 b9.grid(row=2, column = 2)
 
+#reset button
+def reset():
+    pass
 
+
+#reset
+my_menu = Menu(root)
+root.config(menu=my_menu)
+options_menu = Menu(my_menu)
+my_menu.add_cascade(lable="Options", menu=options_menu)
+options_menu.add_command(label="Reset", command= reset())
 
 
 
