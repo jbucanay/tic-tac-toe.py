@@ -6,16 +6,7 @@ from tkinter import messagebox
 root = Tk()
 root.title("Tic Tac Toe")
 ## disable all buttons
-def disable_all_buttons():
-    b1.config(state = DISABLED)
-    b2.config(state=DISABLED)
-    b3.config(state=DISABLED)
-    b4.config(state=DISABLED)
-    b5.config(state=DISABLED)
-    b6.config(state=DISABLED)
-    b7.config(state=DISABLED)
-    b8.config(state=DISABLED)
-    b9.config(state=DISABLED)
+
 winner = False
 
 def checkIfWon():
@@ -140,7 +131,7 @@ def checkIfWon():
         winner = True
         disable_all_buttons()
     #1,5,9
-    elif b1["text"] == "O" and b5["text"] == "X" and b9["text"] == "O":
+    elif b1["text"] == "O" and b5["text"] == "O" and b9["text"] == "O":
         b1.config(fg="red")
         b2.config(fg="red")
         b3.config(fg="red")
@@ -180,6 +171,38 @@ def b_click(b):
 ## define who the winner is
 
 
+def disable_all_buttons():
+    global count, winner
+    if winner == True or count >= 9:
+        b1.config(state = DISABLED)
+        b2.config(state=DISABLED)
+        b3.config(state=DISABLED)
+        b4.config(state=DISABLED)
+        b5.config(state=DISABLED)
+        b6.config(state=DISABLED)
+        b7.config(state=DISABLED)
+        b8.config(state=DISABLED)
+        b9.config(state=DISABLED)
+        try:
+            response = messagebox.askquestion(title="Play again", message="Play again" )
+            print(response)
+            if response == 'yes':
+                count = 0
+                clicked = True
+                winner = False
+                b1.config(text=' ', state=NORMAL)
+                b2.config(text=' ', state=NORMAL)
+                b3.config(text=' ', state=NORMAL)
+                b4.config(text=' ', state=NORMAL)
+                b5.config(text=' ', state=NORMAL)
+                b6.config(text=' ', state=NORMAL)
+                b7.config(text=' ', state=NORMAL)
+                b8.config(text=' ', state=NORMAL)
+                b9.config(text=' ', state=NORMAL)
+            else:
+                root.destroy().pack()
+        except:
+            print('what happened?')
 
 
 
@@ -214,16 +237,10 @@ b8.grid(row=2, column = 1)
 b9.grid(row=2, column = 2)
 
 #reset button
-def reset():
-    pass
 
 
-#reset
-my_menu = Menu(root)
-root.config(menu=my_menu)
-options_menu = Menu(my_menu)
-my_menu.add_cascade(lable="Options", menu=options_menu)
-options_menu.add_command(label="Reset", command= reset())
+
+
 
 
 
